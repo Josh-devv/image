@@ -110,14 +110,14 @@ const EditImage = () => {
 
   return (
     <div className="p-4 w-[100%] flex justify-center">
-      <div className="mt-4 w-[95%] flex justify-between">
+      <div className="mt-4 w-[95%] max-lg:w-[100%] flex max-md:flex-col justify-between">
         <img
           src={image.download_url}
           alt={image.author}
-          className="rounded-xl w-[50%] h-[50vh]"
+          className="rounded-xl w-[50%] max-md:w-[100%] h-[50vh]"
         />
 
-        <div className="ml-3 self-start w-[50%]">
+        <div className="ml-3 max-md:ml-0 self-start max-md:w-[100%] w-[50%]">
         
           <div className="mt-4 pl-2 flex flex-col bg-blue-950 text-white p-2 rounded-lg">
             <h3 className="text-[12px] w-[100px] text-center m1 font-semibold bg-slate-600">
@@ -127,7 +127,7 @@ const EditImage = () => {
             
             <div className="mt-2">
               <h3 className="text-[12px] font-semibold">Adjust Dimensions:</h3>
-              <div className="flex pt-2">
+              <div className="flex max-md:flex-col pt-2">
                 <label className="block mt-1 text-[13px] pr-2">Width:</label>
                 <input
                   type="number"
