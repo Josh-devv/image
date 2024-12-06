@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
+
+
 const EditImage = () => {
   const { id } = useParams<{ id: string }>(); // Getting the id from the route
   const navigate = useNavigate();
-  const [image, setImage] = useState<any>(null);
+  const [images, setImages] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -26,7 +28,7 @@ const EditImage = () => {
           throw new Error("Failed to fetch image details");
         }
         const data = await response.json();
-        setImage(data);
+        setImages(data);
 
         // Restore saved edits from localStorage, even after reload and check back
         const savedEdits = JSON.parse(localStorage.getItem(`edited_${id}`) || "{}");
@@ -112,14 +114,15 @@ const EditImage = () => {
     <div className="p-4 w-[100%] flex justify-center">
       <div className="mt-4 w-[95%] max-lg:w-[100%] flex max-md:flex-col justify-between">
         <img
-          src={image.download_url}
-          alt={image.author}
+          src={images.download_url}
+          alt={images.author}
           className="rounded-xl w-[50%] max-md:w-[100%] h-[50vh]"
         />
 
         <div className="ml-3 max-md:ml-0 self-start max-md:w-[100%] w-[50%]">
         
           <div className="mt-4 pl-2 flex flex-col bg-blue-950 text-white p-2 rounded-lg">
+          <p className="py-2">Picture By: {images.author}</p>
             <h3 className="text-[12px] w-[100px] text-center m1 font-semibold bg-slate-600">
               Edit Options
             </h3>
